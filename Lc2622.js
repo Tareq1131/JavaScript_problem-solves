@@ -6,6 +6,7 @@ class TimeLimitedCache  {
     set (key,value,duration){
         
         const alreadyExists = this .cache.get(key);
+        
         if(alreadyExists){
             clearTimeout(alreadyExists.timeoutId);
         }
@@ -14,6 +15,7 @@ class TimeLimitedCache  {
             this.cache.delete(key);
         },duration);
         this.cache.set(key,{value,timeoutId});
+        return Boolean(alreadyExists)
         
         
     }
